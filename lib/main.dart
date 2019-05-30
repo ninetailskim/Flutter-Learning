@@ -203,3 +203,20 @@ class RandomWordsWidget extends StatelessWidget{
   }
 }
 
+class SwitchAndCheckBoxTestRoute extends StatefulWidget{
+  @override
+  _SwitchAndCheckBoxTestRouteState createState() => new _SwitchAndCheckBoxTestRouteState();
+}
+
+class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>{
+  bool _switchSelected = true;
+  bool _checkboxSelected = true;
+  @override
+  Widget build(BuildContext context){
+    return Column(
+      children: <Widget>[
+        
+      ],
+    );
+  }
+}
