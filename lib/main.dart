@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         "new_page":(context)=>NewRoute(),
+        "switch_checkbox":(context)=>SwitchAndCheckBoxRoute(),
       },
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -129,7 +130,9 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             RaisedButton(
               child: Text("Normal"),
-              onPressed: ()=> {},
+              onPressed: ()=> {
+                Navigator.pushNamed(context, "switch_checkbox")
+              },
             ),
             // FlatButton(
             //   child: Text("normal"),
@@ -203,19 +206,125 @@ class RandomWordsWidget extends StatelessWidget{
   }
 }
 
+class SwitchAndCheckBoxRoute extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title:Text("SwitchAndCheckBox"),
+      ),
+      body: Center(
+        child: SwitchAndCheckBoxTestRoute(),
+        ),
+      );
+  }
+}
+
 class SwitchAndCheckBoxTestRoute extends StatefulWidget{
   @override
   _SwitchAndCheckBoxTestRouteState createState() => new _SwitchAndCheckBoxTestRouteState();
+  
 }
 
 class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>{
   bool _switchSelected = true;
   bool _checkboxSelected = true;
+  String _stringX = "";
+  
+  TextEditingController _upwdController = new TextEditingController();
+  TextEditingController _selectionController = new TextEditingController();
+
+  FocusNode focusNode1 = new FocusNode();
+  FocusNode focusNode2 = new FocusNode();
+  FocusScopeNode focusScopeNode;
+
+  @override
+  void initState(){
+    _upwdController.addListener((){
+      print("wang~"+_upwdController.text);
+    });
+  }
+
   @override
   Widget build(BuildContext context){
+    _selectionController.text = "Hello World!";
+    _selectionController.selection=TextSelection(
+      baseOffset: 2,
+      extentOffset: _selectionController.text.length
+    );
     return Column(
       children: <Widget>[
-        
+        // Switch(
+        //   value : _switchSelected,
+        //   onChanged: (value){
+        //     setState(() {
+        //      _switchSelected=value; 
+        //     });
+        //   },
+        // ),
+        // Checkbox(
+        //   value: _checkboxSelected,
+        //   activeColor: Colors.red,
+        //   onChanged: (value){
+        //     setState(() {
+        //      _checkboxSelected=value; 
+        //     });
+        //   },
+        // ),
+        // Text(
+        //   '$_stringX'
+        // ),
+        TextField(
+          autofocus: true,
+          decoration: InputDecoration(
+            labelText: "用户名1",
+            hintText:"用户名或邮箱1",
+            prefixIcon: Icon(Icons.person)
+          ),
+          focusNode: focusNode1,
+          onChanged: (value){
+            // print(_upwdController.text);
+            // print("miao~ $value");
+            // debugPrint(value);
+            // debugPrint(value[value.length - 1]);
+            setState(() {
+              _stringX += value[value.length - 1];
+            });
+          },
+          controller: _selectionController,
+        ),
+        TextField(
+          decoration: InputDecoration(
+            labelText: "用户名2",
+            hintText:"用户名或邮箱2",
+          ),
+          focusNode: focusNode2,
+        ),
+        TextField(
+          decoration: InputDecoration(
+            labelText: "密码",
+            hintText: "您的登录密码",
+            prefixIcon: Icon(Icons.lock)
+          ),
+          obscureText: true,
+          controller: _upwdController,
+        ),
+        RaisedButton(
+          child: Text("切换"),
+          onPressed: (){
+            if(null == focusScopeNode){
+              focusScopeNode = FocusScope.of(context);
+            }
+            focusScopeNode.requestFocus(focusNode2);
+            print(focusNode2);
+          },
+        ),
+        RaisedButton(
+          child: Text("取消"),
+          onPressed: (){
+            
+          },
+        ),
       ],
     );
   }
