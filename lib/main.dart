@@ -315,8 +315,16 @@ class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>
             if(null == focusScopeNode){
               focusScopeNode = FocusScope.of(context);
             }
-            focusScopeNode.requestFocus(focusNode2);
-            print(focusNode2);
+            // print(focusNode2.hasFocus);
+            // focusScopeNode.requestFocus(focusNode2);
+            // print(focusNode2);
+            // print("......");
+            // print(focusNode2.hasFocus);
+            if(focusNode1.hasFocus == true){
+              focusScopeNode.requestFocus(focusNode2);
+            }else{
+              focusScopeNode.requestFocus(focusNode1);
+            }
           },
         ),
         RaisedButton(
