@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
+import 'form.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       routes: {
         "new_page":(context)=>NewRoute(),
         "switch_checkbox":(context)=>SwitchAndCheckBoxRoute(),
+        "myform":(context)=>MyFormRoute(),
       },
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -153,7 +155,9 @@ class _MyHomePageState extends State<MyHomePage> {
               splashColor: Colors.grey,
               child:Text("Submit"),
               shape:RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
-              onPressed: ()=>{},
+              onPressed: ()=>{
+                Navigator.pushNamed(context, "myform")
+              },
             ),
             RandomWordsWidget(),
             // Image(
@@ -297,14 +301,18 @@ class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>
           decoration: InputDecoration(
             labelText: "用户名2",
             hintText:"用户名或邮箱2",
+            prefixIcon: Icon(Icons.email),
+            border: InputBorder.none
           ),
           focusNode: focusNode2,
         ),
         TextField(
+          keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             labelText: "密码",
             hintText: "您的登录密码",
-            prefixIcon: Icon(Icons.lock)
+            prefixIcon: Icon(Icons.lock),
+            hintStyle: TextStyle(color:Colors.red, fontSize: 20.0),
           ),
           obscureText: true,
           controller: _upwdController,
