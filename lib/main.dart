@@ -322,7 +322,8 @@ class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>
         RaisedButton(
           child: Text("取消"),
           onPressed: (){
-            
+            focusNode1.unfocus();
+            focusNode2.unfocus();
           },
         ),
       ],
