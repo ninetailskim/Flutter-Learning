@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'form.dart';
+import 'flowout.dart';
 
 void main() => runApp(MyApp());
 
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
         "new_page":(context)=>NewRoute(),
         "switch_checkbox":(context)=>SwitchAndCheckBoxRoute(),
         "myform":(context)=>MyFormRoute(),
+        "myflowout":(context)=>FlowoutRoute(),
       },
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -340,6 +342,7 @@ class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>
           onPressed: (){
             focusNode1.unfocus();
             focusNode2.unfocus();
+            Navigator.pushNamed(context, "myflowout");
           },
         ),
       ],
