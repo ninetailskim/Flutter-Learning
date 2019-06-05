@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'form.dart';
 import 'flowout.dart';
+import 'Flex.dart';
+import 'wrapandflow.dart';
 
 void main() => runApp(MyApp());
 
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
         "switch_checkbox":(context)=>SwitchAndCheckBoxRoute(),
         "myform":(context)=>MyFormRoute(),
         "myflowout":(context)=>FlowoutRoute(),
+        "myFlex":(context)=>FlexRoute(),
+        "mywrapandflow":(context)=>WAFRoute(),
       },
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -281,7 +285,7 @@ class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>
         //   '$_stringX'
         // ),
         TextField(
-          autofocus: true,
+          //autofocus: true,
           decoration: InputDecoration(
             labelText: "用户名1",
             hintText:"用户名或邮箱1",
@@ -318,6 +322,18 @@ class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>
           ),
           obscureText: true,
           controller: _upwdController,
+        ),
+        RaisedButton(
+          child: Text("Flex"),
+          onPressed: (){
+            Navigator.pushNamed(context, "myFlex");
+          },
+        ),
+        RaisedButton(
+          child: Text("Wrap and Flow"),
+          onPressed: (){
+            Navigator.pushNamed(context, "mywrapandflow");
+          },
         ),
         RaisedButton(
           child: Text("切换"),
