@@ -4,6 +4,8 @@ import 'form.dart';
 import 'flowout.dart';
 import 'Flex.dart';
 import 'wrapandflow.dart';
+import 'StackandPositioned.dart';
+import 'Padding.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,6 +34,8 @@ class MyApp extends StatelessWidget {
         "myflowout":(context)=>FlowoutRoute(),
         "myFlex":(context)=>FlexRoute(),
         "mywrapandflow":(context)=>WAFRoute(),
+        "mystackandpos":(context)=>SAPRoute(),
+        "charpter5":(context)=>Charpter5(),
       },
       home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -333,6 +337,18 @@ class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>
           child: Text("Wrap and Flow"),
           onPressed: (){
             Navigator.pushNamed(context, "mywrapandflow");
+          },
+        ),
+        RaisedButton(
+          child: Text("Stack and Positioned"),
+          onPressed: (){
+            Navigator.pushNamed(context, "mystackandpos");
+          },
+        ),
+        RaisedButton(
+          child: Text("charpter5"),
+          onPressed: (){
+            Navigator.pushNamed(context, "charpter5");
           },
         ),
         RaisedButton(
