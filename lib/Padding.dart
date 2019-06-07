@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class Charpter5 extends StatelessWidget{
   @override
@@ -30,19 +31,25 @@ class Charpter5 extends StatelessWidget{
             RaisedButton(
               child: Text("DecoratedBox"),
               onPressed: (){
-                
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new DecoratedBoxRoute();
+                }));
               },
             ),
             RaisedButton(
               child: Text("Transform"),
               onPressed: (){
-                
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new TransformRoute();
+                }));
               },
             ),
             RaisedButton(
               child: Text("Container"),
               onPressed: (){
-                
+                Navigator.push(context, new MaterialPageRoute(builder: (context){
+                  return new ContainerRoute();
+                }));
               },
             ),
             RaisedButton(
@@ -90,7 +97,7 @@ class PaddingRoute extends StatelessWidget{
 }
 
 class ConstrainedBoxRoute extends StatelessWidget{
-  Widget redBox=DecoratedBox(
+  final Widget redBox=DecoratedBox(
     decoration: BoxDecoration(color: Colors.red),
   );
 
@@ -148,8 +155,127 @@ class DecoratedBoxRoute extends StatelessWidget{
       ),
       body: Column(
         children: <Widget>[
-          
+          DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(colors: [Colors.red, Colors.orange[700]]),
+              borderRadius: BorderRadius.circular(3.0),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black54,
+                  offset: Offset(2.0, 2.0),
+                  blurRadius: 4.0
+                ),
+              ]
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 18.0),
+              child: Text("Login", style: TextStyle(color: Colors.white),),
+            ),
+          ),
         ],
+      ),
+    );
+  }
+}
+
+
+class TransformRoute extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Transform"),
+      ),
+      body: Column(
+        children: <Widget>[
+          Container(
+            color: Colors.black,
+            child: new Transform(
+              alignment: Alignment.topRight,
+              transform: new Matrix4.skewY(0.3),
+              child: new Container(
+                padding: const EdgeInsets.all(8.0),
+                color: Colors.deepOrange,
+                child: const Text("Apartment for rent"),
+              ),
+            ),
+          ),
+          DecoratedBox(
+            decoration: BoxDecoration(color: Colors.red),
+            child: Transform.translate(
+              offset: Offset(-20.0, -5.0),
+              child: Text("Hello world"),
+            ),
+          ),
+          DecoratedBox(
+            decoration: BoxDecoration(color: Colors.red),
+            child: Transform.rotate(
+              angle: math.pi/2,
+              child: Text("Hello world"),
+            ),
+          ),
+          DecoratedBox(
+            decoration: BoxDecoration(color: Colors.red),
+            child: Transform.scale(
+              scale: 1.5,
+              child: Text("Hello world"),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+//layout 阶段
+//render 阶段
+//need more test
+
+class ContainerRoute extends StatelessWidget{
+  //width, height 和 constraints 互斥
+  //color 和 decoration 互斥
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Container"),
+      ),
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 50.0, left: 120.0),
+              constraints: BoxConstraints.tightFor(width: 200.0, height: 150.0),
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  colors: [Colors.red, Colors.orange],
+                  center: Alignment.topLeft,
+                  radius: .98
+                ),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black54,
+                    offset: Offset(2.0, 2.0),
+                    blurRadius: 4.0
+                  )
+                ]
+              ),
+              transform: Matrix4.rotationZ(.2),
+              alignment: Alignment.center,
+              child: Text("5.20", style:TextStyle(color: Colors.white, fontSize: 40.0)),
+            ),
+            Container(
+              margin: EdgeInsets.all(20.0),
+              color: Colors.orange,
+              child: Text("Hello world"),
+            ),
+            Container(
+              padding: EdgeInsets.all(20.0),
+              color: Colors.orange,
+              child: Text("Hello world"),
+            ),
+          ],
+        ), 
       ),
     );
   }
