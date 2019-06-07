@@ -138,3 +138,19 @@ class ConstrainedBoxRoute extends StatelessWidget{
     );
   }
 }
+
+class DecoratedBoxRoute extends StatelessWidget{
+  @override
+  Widget build(BuildContext context){
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("DecoratedBox"),
+      ),
+      body: Column(
+        children: <Widget>[
+          
+        ],
+      ),
+    );
+  }
+}
